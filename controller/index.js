@@ -1,10 +1,12 @@
 
 const { getLogin } = require('./loginController')
-const { getUsers} = require('./usersController')
+const { getUsers, addUser, removeUser} = require('./usersController')
 const { getInbox} = require('./inboxController')
 
 module.exports = {
     getLogin,
     getInbox,
-    getUsers
+    getUsers,
+    addUser,
+    removeUser
 }
