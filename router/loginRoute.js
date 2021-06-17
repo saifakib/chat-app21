@@ -1,8 +1,15 @@
 const router = require("express").Router()
 
-const { getLogin } = require("../controller")
+const { getLogin, login } = require("../controller")
 const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse")
+const { redirectLoggedIn } = require("../middlewares/common/checkLogin")
+const { loginValidator, loginValidatorHandler } = require('../middlewares/login/loginValidator')
 
-router.get("/", decorateHtmlResponse("Login"), getLogin)
+const page_title = "Login"
+
+router.get("/", decorateHtmlResponse(page_title), redirectLoggedIn, getLogin)
+
+
+router.post("/", decorateHtmlResponse(page_title), loginValidator, loginValidatorHandler, login)
 
 module.exports = router
