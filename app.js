@@ -4,6 +4,8 @@ const express = require("express")
 const mongoose = require("mongoose")
 const path = require("path")
 const cookieParser = require("cookie-parser")
+const http = require('http')
+const moment = require("moment")
 
 // internal imports
 const { loginRoute, inboxRoute, usersRoute } = require('./router')
@@ -11,6 +13,14 @@ const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHan
 
 
 const app = express()
+const server = http.createServer(app)
+
+// socket creation
+const io = require('socket.io')(server)
+global.io = io;
+
+// set comment as app locals
+app.locals.moment = moment;
 
 // request parsers
 app.use(express.json())

@@ -11,7 +11,7 @@ const getLogin = (req, res, next) => {
 }
 
 const login = async (req, res, next) => {
-    
+
     try {
         const user = await User.findOne({
             $or: [{ email: req.body.username }, { mobile: req.body.username }]
@@ -23,10 +23,12 @@ const login = async (req, res, next) => {
             if (isPasswordValid) {
                 // generate user object
                 const userObject = {
+                    userid: user._id,
                     username: user.name,
                     mobile: user.mobile,
                     email: user.email,
-                    role: "user",
+                    avatar: user.avatar || null,
+                    role: user.role || "user",
                 }
 
                 // generate token
@@ -43,7 +45,7 @@ const login = async (req, res, next) => {
 
                 res.locals.loggedInUser = userObject
 
-                res.render("inbox")
+                res.redirect("inbox")
             } else {
                 throw createError("Login Failed ! Please Try Again !")
             }
@@ -65,8 +67,14 @@ const login = async (req, res, next) => {
     }
 }
 
+const logout = (req, res) => {
+    res.clearCookie(process.env.COOKIE_NAME);
+    res.send("logged out");
+}
+
 
 module.exports = {
     getLogin,
-    login
+    login,
+    logout
 }

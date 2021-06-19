@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const { User } = require('../models')
 const { unlink } = require('fs')
+const path = require('path')
 
 
 // get users page
