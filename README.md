@@ -25,3 +25,21 @@ Please follow the below instructions to run this project in your machine:
    ```sh
    npm run prod
    ```
+   
+
+## Info
+
+Repository Link: [https://github.com/saifakib/chat-app21](https://github.com/saifakib/chat-app21)
+
+Project Live Demo - [https://kotha21.herokuapp.com/](https://kotha21.herokuapp.com/)
+
+
+### Admin Login:
+
+Username: admin@gmail.com
+Password: Admin100@
+
+### Normal User Login:
+
+Username: user@gmail.com
+Password: User100@
